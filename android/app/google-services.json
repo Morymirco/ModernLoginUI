@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "607268251622",
+    "project_id": "flutterodc",
+    "storage_bucket": "flutterodc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607268251622:android:7fc14ae9fc9fe8208c9827",
+        "android_client_info": {
+          "package_name": "com.example.modernlogintute"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNTZuqSbTdar56lDirtf9Uc0VSjbgjdgM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
