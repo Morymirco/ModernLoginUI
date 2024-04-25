@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:location/location.dart';
 
 class MapSample extends StatefulWidget {
-  const MapSample({super.key});
+  const MapSample({Key? key}) : super(key: key);
 
   @override
   State<MapSample> createState() => MapSampleState();
@@ -14,37 +14,44 @@ class MapSampleState extends State<MapSample> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
+  static const CameraPosition _kGuinea = CameraPosition(
+    target: LatLng(9.9456, -9.6966), // Coordinates for Guinea
+    zoom: 8,
   );
-
-  static const CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(9.509167, -13.712222),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
+      body: SizedBox(
+        height: 400,
+        width: 400,
+        child: GoogleMap(
+          mapType: MapType.terrain,
+          initialCameraPosition: _kGuinea,
+          onMapCreated: (GoogleMapController controller) {
+            //_controller.complete(controller);
+
+            print("Carte completement charger");
+          },
+        ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: const Text('ici'),
-        icon: const Icon(Icons.location_on),
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   onPressed: _goToGuinea,
+      //   label: const Text('To Guinea!'),
+      //   icon: const Icon(Icons.directions),
+      // ),
     );
   }
 
-  Future<void> _goToTheLake() async {
+  Future<void> _goToGuinea() async {
     final GoogleMapController controller = await _controller.future;
-    await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+    await controller.animateCamera(CameraUpdate.newCameraPosition(_kGuinea));
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+    title: 'Guinea Map',
+    home: MapSample(),
+  ));
 }
